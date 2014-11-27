@@ -1,15 +1,18 @@
 @(filenames: List[String])
 
 @main("Photo gallery") {
+    <script type="text/javascript" src="@routes.Assets.at("js/thumbnails.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/thumbnails.css")">
 
     <!-- Jssor Slider Begin -->
-    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 960px;
-        height: 480px; background: #191919; overflow: hidden;">
+    <!-- You can move inline styles to css file or css block. -->
+    <div id="slider1_container" style="position: relative; width: 720px;
+        height: 480px; overflow: hidden;">
 
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
             </div>
             <div style="position: absolute; display: block; background: url(@routes.Assets.at("icons/loading.gif")) no-repeat center center;
                 top: 0px; left: 0px;width: 100%;height:100%;">
@@ -17,161 +20,40 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 240px; top: 0px; width: 720px; height: 480px; overflow: hidden;">
-        @for(item <- filenames) {
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 720px; height: 480px; overflow: hidden;">
+            @for(item <- filenames) {
             <div>
                 <img u="image" src="@routes.Assets.at("img/")@item" />
                 <img u="thumb" src="@routes.Assets.at("img/")@item" />
             </div>
-        }
-            <!-- <div>
-                <img u="image" src="img/travel/02.jpg" />
-                <img u="thumb" src="img/travel/thumb-02.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/03.jpg" />
-                <img u="thumb" src="img/travel/thumb-03.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/04.jpg" />
-                <img u="thumb" src="img/travel/thumb-04.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/05.jpg" />
-                <img u="thumb" src="img/travel/thumb-05.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/06.jpg" />
-                <img u="thumb" src="img/travel/thumb-06.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/07.jpg" />
-                <img u="thumb" src="img/travel/thumb-07.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/08.jpg" />
-                <img u="thumb" src="img/travel/thumb-08.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/09.jpg" />
-                <img u="thumb" src="img/travel/thumb-09.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/10.jpg" />
-                <img u="thumb" src="img/travel/thumb-10.jpg" />
-            </div>
-
-            <div>
-                <img u="image" src="img/travel/11.jpg" />
-                <img u="thumb" src="img/travel/thumb-11.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/12.jpg" />
-                <img u="thumb" src="img/travel/thumb-12.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/13.jpg" />
-                <img u="thumb" src="img/travel/thumb-13.jpg" />
-            </div>
-            <div>
-                <img u="image" src="img/travel/14.jpg" />
-                <img u="thumb" src="img/travel/thumb-14.jpg" />
-            </div> -->
+            }
         </div>
 
-        <!-- Arrow Navigator Skin Begin -->
-        <style>
-            /* jssor slider arrow navigator skin 05 css */
-            /*
-            .jssora05l              (normal)
-            .jssora05r              (normal)
-            .jssora05l:hover        (normal mouseover)
-            .jssora05r:hover        (normal mouseover)
-            .jssora05ldn            (mousedown)
-            .jssora05rdn            (mousedown)
-            */
-            .jssora05l, .jssora05r, .jssora05ldn, .jssora05rdn
-            {
-                position: absolute;
-                cursor: pointer;
-                display: block;
-                background: url(@routes.Assets.at("icons/a17.png")) no-repeat;
-                overflow:hidden;
-            }
-            .jssora05l { background-position: -10px -40px; }
-            .jssora05r { background-position: -70px -40px; }
-            .jssora05l:hover { background-position: -130px -40px; }
-            .jssora05r:hover { background-position: -190px -40px; }
-            .jssora05ldn { background-position: -250px -40px; }
-            .jssora05rdn { background-position: -310px -40px; }
-        </style>
-        <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora05l" style="width: 40px; height: 40px; top: 158px; left: 248px;">
-        </span>
-        <!-- Arrow Right -->
-        <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 158px; right: 8px">
-        </span>
-        <!-- Arrow Navigator Skin End -->
-
-        <!-- Thumbnail Navigator Skin 02 Begin -->
-        <div u="thumbnavigator" class="jssort02" style="position: absolute; width: 240px; height: 480px; left:0px; bottom: 0px;">
-
+        <!-- Thumbnail Navigator Skin Begin -->
+        <div u="thumbnavigator" class="jssort07" style="position: absolute; width: 720px; height: 100px; left: 0px; bottom: 0px; overflow: hidden; ">
+            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
             <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 02 css */
-                /*
-                .jssort02 .p            (normal)
-                .jssort02 .p:hover      (normal mouseover)
-                .jssort02 .pav          (active)
-                .jssort02 .pav:hover    (active mouseover)
-                .jssort02 .pdn          (mousedown)
-                */
-                .jssort02 .w
-                {
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                }
-                .jssort02 .c
-                {
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 95px;
-                    height: 62px;
-                    border: #000 2px solid;
-                }
-                .jssort02 .p:hover .c, .jssort02 .pav:hover .c, .jssort02 .pav .c
-                {
-                    background: url(@routes.Assets.at("icons/t01.png")) center center;
-                    border-width: 0px;
-                    top: 2px;
-                    left: 2px;
-                    width: 95px;
-                    height: 62px;
-                }
-                .jssort02 .p:hover .c, .jssort02 .pav:hover .c
-                {
-                    top: 0px;
-                    left: 0px;
-                    width: 97px;
-                    height: 64px;
-                    border: #fff 1px solid;
-                }
-            </style>
+
             <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="position: absolute; width: 99px; height: 66px; top: 0; left: 0;">
-                    <div class=w><thumbnailtemplate style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></thumbnailtemplate></div>
-                    <div class=c>
+                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 99px; HEIGHT: 66px; TOP: 0; LEFT: 0;">
+                    <thumbnailtemplate class="i" style="position:absolute;"></thumbnailtemplate>
+                    <div class="o">
                     </div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
+            <!-- Arrow Navigator Skin Begin -->
+            <!-- Arrow Left -->
+            <span u="arrowleft" class="jssora11l" style="width: 37px; height: 37px; top: 123px; left: 8px;">
+            </span>
+            <!-- Arrow Right -->
+            <span u="arrowright" class="jssora11r" style="width: 37px; height: 37px; top: 123px; right: 8px">
+            </span>
+            <!-- Arrow Navigator Skin End -->
         </div>
-        <!-- Thumbnail Navigator Skin End -->
+        <!-- ThumbnailNavigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">image carousel</a>
+        <!-- Trigger -->
     </div>
     <!-- Jssor Slider End -->
 }
