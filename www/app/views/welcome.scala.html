@@ -1,0 +1,65 @@
+@(filenames: List[String])
+
+@base("Photo gallery") {
+<body>
+	<ul class='kwicks kwicks-vertical'>
+		<li>
+			<ul class='kwicks kwicks-horizontal'>
+				<li>
+					<img src = @routes.Assets.at("img/1.jpg")>
+					<div class="flex-caption">
+						<h3>Lorem ipsum dolor sit amet</h3>
+					</div>
+				</li>
+				<li>
+					<img src=@routes.Assets.at("img/2.jpg")>
+					<div class="flex-caption">
+						<h3>Lorem ipsum dolor sit amet</h3>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class='kwicks kwicks-horizontal'>
+				<li>
+					<img src=@routes.Assets.at("img/3.jpg")>
+					<div class="flex-caption">
+						<h3>Lorem ipsum dolor sit amet</h3>
+					</div>
+				</li>
+				<li>
+					<img src=@routes.Assets.at("img/4.jpg")>
+					<div class="flex-caption">
+						<h3>Lorem ipsum dolor sit amet</h3>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+<footer>
+	<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/jquery.kwicks.min.css") />
+	<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/default.css") />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src=@routes.Assets.at("js/jquery.kwicks.min.js") type="text/javascript"></script>
+	<script src=@routes.Assets.at("js/gallery.js") type="text/javascript"></script>
+	<script type="text/javascript">
+	$(function() {
+		$('.kwicks-vertical').kwicks({
+			maxSize : 590,
+			spacing : 5,
+			isVertical: true,
+			behavior: 'menu',
+			selectOnClick: false
+		});
+
+		$('.kwicks-horizontal').kwicks({
+			maxSize: 590,
+			spacing: 5,
+			behavior: 'menu',
+			selectOnClick: false
+		});
+	});
+	</script>
+</footer>
+}

@@ -11,12 +11,21 @@ import utils.FileFinder;
 
 public class Application extends Controller {
 
-    public static Result index() {
+    public static Result welcome() {
         String path = "public/img/", pattern = "\\S+\\.jpg";
 
         FileFinder ff = new FileFinder();
         ArrayList<String> filenames = ff.find(path, pattern);
 
-        return ok(index.render(filenames));
+        return ok(welcome.render(filenames));
+    }
+
+    public static Result slide() {
+        String path = "public/img/", pattern = "\\S+\\.jpg";
+
+        FileFinder ff = new FileFinder();
+        ArrayList<String> filenames = ff.find(path, pattern);
+
+        return ok(slide.render(filenames));
     }
 }

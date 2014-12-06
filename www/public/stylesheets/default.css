@@ -1,0 +1,45 @@
+.flex-caption {background:none; -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000); zoom: 1;}
+.flex-caption {
+	width: 96%;
+	padding: 2%;
+	margin: 0;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.3);
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+	font-size: 20px;
+	line-height: 18px;
+}
+
+.flex-caption {
+	width:100%;
+	padding:20px 30px;
+}
+
+img
+{
+	height: 100%;
+}
+
+.kwicks-vertical {
+	width: 890px;
+	height: 890px;
+}
+.kwicks-vertical > li {
+	height: 290px;
+	margin-top: 5px;
+}
+.kwicks-horizontal {
+	width: 890px;
+	height: 100%;
+}
+.kwicks-horizontal > li {
+	height: 100%;
+	width: 290px;
+	float: left;
+	margin-left: 5px;
+	background-color: #ffaa00;
+}

@@ -1,0 +1,85 @@
+@(filenames: List[String])
+
+@base("Photo gallery") {
+<body class="loading">
+	<!-- Start of Container -->
+	<div id="container" class="cf">
+		<div id="main" role="main">
+			<section class="slider">
+				<div id="slider" class="flexslider">
+					<ul class="slides">
+						@for(filename <- filenames) {
+						 	<li>
+								<img src=@routes.Assets.at("img/")@filename />
+							</li>
+						}
+					</ul>
+				</div>
+				<div id="carousel" class="flexslider">
+					<ul class="slides">
+						@for(filename <- filenames) {
+						 	<li>
+								<img src=@routes.Assets.at("img/")@filename />
+							</li>
+						}
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+	<!-- End of Container -->
+
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href=@routes.Assets.at("stylesheets/flexslider.css") type="text/css" media="screen" />
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<!-- FlexSlider -->
+	<script defer src=@routes.Assets.at("js/jquery.flexslider.js")></script>
+
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('#carousel').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: false,
+				slideshow: false,
+				itemWidth: 210,
+				itemMargin: 5,
+				asNavFor: '#slider'
+			});
+
+			$('#slider').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: false,
+				slideshow: false,
+				sync: "#carousel",
+				start: function(slider){
+					$('body').removeClass('loading');
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function(){
+			var toggles = $('.toggle a'),
+				codes = $('.code');
+
+			toggles.on("click", function(event){
+				event.preventDefault();
+				var $this = $(this);
+
+				if (!$this.hasClass("active")) {
+					toggles.removeClass("active");
+					$this.addClass("active");
+					codes.hide().filter(this.hash).show();
+				}
+			});
+			toggles.first().click();
+		});
+	</script>
+	<!-- Optional FlexSlider Additions -->
+	<!--	<script src="js/jquery.easing.js"></script>
+	<script src="js/jquery.mousewheel.js"></script> -->
+</body>
+}
