@@ -1,3 +1,10 @@
+body {
+    background-image: url("../icons/Background-Picture.jpg");
+}
+
+#container{
+	margin: auto;
+}
 .flex-caption {background:none; -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000); zoom: 1;}
 .flex-caption {
@@ -25,21 +32,20 @@ img
 }
 
 .kwicks-vertical {
-	width: 890px;
-	height: 890px;
+	width: 704px;
+	height: 864px;
 }
 .kwicks-vertical > li {
-	height: 290px;
+	height: 288px;
 	margin-top: 5px;
 }
 .kwicks-horizontal {
-	width: 890px;
+	width: 704px;
 	height: 100%;
 }
 .kwicks-horizontal > li {
 	height: 100%;
-	width: 290px;
+	width: 352px;
 	float: left;
 	margin-left: 5px;
-	background-color: #ffaa00;
 }

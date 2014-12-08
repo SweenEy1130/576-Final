@@ -1,7 +1,15 @@
 @(filenames: List[String])
 
 @base("Photo gallery") {
+<script type="text/javascript">
+	var cometMessage = function(event) {
+		console.log('Received event: ' + event)
+	}
+</script>
+
 <body>
+	<iframe src="/comet"></iframe>
+
 	<ul class='kwicks kwicks-vertical'>
 		<li>
 			<ul class='kwicks kwicks-horizontal'>

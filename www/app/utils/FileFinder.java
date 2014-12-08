@@ -23,7 +23,7 @@ public class FileFinder {
 		return ans;
 	}
 
-	public static ArrayList<Boolean> JSONParse(String selector) throws IOException{
+	public static ArrayList<String> JSONParse(String selector) throws IOException{
 		InputStream    fis;
 		BufferedReader br;
 
@@ -31,19 +31,83 @@ public class FileFinder {
 		br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 		String arr = br.readLine();
 		String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", "").split(",");
-		ArrayList<Boolean> results = new ArrayList<Boolean>();
+		ArrayList<String> results = new ArrayList<String>();
 
-		for (int i = 0; i < items.length; i++) {
-		    try {
-		    	if (items[i].equals("true"))
-		    		results.add(true);
-		    	else 
-		    		results.add(false);
-		    } catch (NumberFormatException nfe) {};
-		}
+		for (int i = 0; i < items.length; i++)
+			results.add(items[i]);
 
 		// Done with the file
 		br.close();
 		return results;
+	}
+
+	public static ArrayList<String> SIFTParse(String selector, int idx) throws IOException{
+		InputStream    fis;
+		BufferedReader br;
+
+		fis = new FileInputStream("label/" + selector);
+		br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+		String arr = null;
+		for (int i = 0; i <= idx; i++) arr = br.readLine();
+		String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", "").split(",");
+		ArrayList<String> results = new ArrayList<String>();
+
+		for (int i = 0; i < items.length; i++)
+    		results.add(items[i]);
+
+		// Done with the file
+		br.close();
+		return results;
+	}
+
+	public static ArrayList<ArrayList<String>> SIFTParseAll(String selector) throws IOException{
+		InputStream    fis;
+		BufferedReader br;
+
+		fis = new FileInputStream("label/" + selector);
+		br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+		String arr = br.readLine();
+		int n = Integer.valueOf(arr);
+
+		ArrayList<ArrayList<String>> ret = new ArrayList<ArrayList<String>>();
+		for (int k = 0; k < n; k++){
+			arr = br.readLine();
+			String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", "").split(",");
+			ArrayList<String> results = new ArrayList<String>();
+
+			for (int i = 0; i < items.length; i++) {
+				results.add(items[i]);
+			}
+			ret.add(results);
+		}
+
+		// Done with the file
+		br.close();
+		return ret;
+	}
+
+	public static ArrayList<ArrayList<String>> VideoParseAll(String selector) throws IOException{
+		InputStream    fis;
+		BufferedReader br;
+
+		fis = new FileInputStream("label/" + selector);
+		br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+
+		ArrayList<ArrayList<String>> ret = new ArrayList<ArrayList<String>>();
+
+		String arr;;
+		while ((arr = br.readLine()) != null){
+			String[] items = arr.replaceAll("\\[", "").replaceAll("\\]", "").split(",");
+			ArrayList<String> results = new ArrayList<String>();
+
+			for (int i = 0; i < items.length; i++) {
+				results.add(items[i]);
+			}
+			ret.add(results);
+		}
+
+		// Done with the file
+		br.close();
+		return ret;
 	}
 }

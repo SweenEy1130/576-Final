@@ -50,7 +50,6 @@
 
 			$('#slider').flexslider({
 				animation: "slide",
-				controlNav: false,
 				animationLoop: false,
 				slideshow: false,
 				sync: "#carousel",
@@ -58,24 +57,6 @@
 					$('body').removeClass('loading');
 				}
 			});
-		});
-	</script>
-	<script>
-		$(function(){
-			var toggles = $('.toggle a'),
-				codes = $('.code');
-
-			toggles.on("click", function(event){
-				event.preventDefault();
-				var $this = $(this);
-
-				if (!$this.hasClass("active")) {
-					toggles.removeClass("active");
-					$this.addClass("active");
-					codes.hide().filter(this.hash).show();
-				}
-			});
-			toggles.first().click();
 		});
 	</script>
 	<!-- Optional FlexSlider Additions -->

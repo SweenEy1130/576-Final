@@ -1,0 +1,48 @@
+@(files: java.util.ArrayList[java.util.ArrayList[String]])
+
+@base("Photo gallery") {
+<body class="loading">
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href=@routes.Assets.at("stylesheets/flexslider.css") type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/default.css") />
+	<!-- Start of Container -->
+	<div id="container" class="cf" align="center">
+		<div id="main" role="main">
+			@for(file <- files) {
+			<section class="slider">
+				<div id="carousel" class="flexslider">
+					<ul class="slides">
+					@for(filename <- file){
+						<li>
+							<img src=@routes.Assets.at("img/")@filename />
+						</li>
+					}
+					</ul>
+				</div>
+			</section>
+			}
+		</div>
+	</div>
+	<!-- End of Container -->
+
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<!-- FlexSlider -->
+	<script defer src=@routes.Assets.at("js/jquery.flexslider.js")></script>
+
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('.flexslider').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: false,
+				slideshow: false,
+				mousewheel:	true,
+				itemWidth: 150,
+				itemMargin: 5,
+				asNavFor: '#slider'
+			});
+		});
+	</script>
+</body>
+}

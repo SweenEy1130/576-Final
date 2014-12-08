@@ -1,4 +1,4 @@
-@(filenames: List[String])
+@(videos: java.util.ArrayList[java.util.ArrayList[String]])
 
 @base("Photo gallery") {
 <body class="loading">
@@ -6,24 +6,38 @@
 	<div id="container" class="cf" align="center">
 		<div id="main" role="main">
 			<section class="slider">
+				@for((video, index) <- videos.zipWithIndex) {
+				<div class="flexslider feature" id="feature@(index+1)" style="display:none">
+					<div class="flex-viewport" style="overflow: hidden; position: relative;">
+						<ul class="slides" style="	width: 2000%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(0px, 0px, 	0px); transform: translate3d(0px, 0px, 0px);">
+							@for((filename, index) <- video.zipWithIndex){
+							<li style="width: 100px; float: left; display: block;">
+								<img class="keyframe" id=@filename src=@routes.Assets.at("video/")@filename>
+							</li>
+							}
+						</ul>
+					</div>
+				</div>
+				}
 				<div id="slider" class="flexslider">
 					<ul class="slides">
-						@for(filename <- filenames) {
-						 	<li>
-								<img src=@routes.Assets.at("img/")@filename />
-							</li>
+						@for((video, index) <- videos.zipWithIndex) {
+						<li>
+							<canvas class="video" id="@(index+1)" width="352" height="288"></canvas>
+						</li>
 						}
 					</ul>
 				</div>
 				<div id="carousel" class="flexslider">
 					<ul class="slides">
-						@for(filename <- filenames) {
-						 	<li>
-								<img src=@routes.Assets.at("img/")@filename />
-							</li>
+						@for((filename, index) <- videos.zipWithIndex) {
+						<li>
+							<img class="thumbnail" id=@(index+1) src=@routes.Assets.at("video/")@(index+1).1.jpg />
+						</li>
 						}
 					</ul>
 				</div>
+
 			</section>
 		</div>
 	</div>
@@ -31,7 +45,7 @@
 
 	<!-- Demo CSS -->
 	<link rel="stylesheet" href=@routes.Assets.at("stylesheets/flexslider.css") type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/default.css") />
+	<link rel="stylesheet" href=@routes.Assets.at("stylesheets/default.css") type="text/css" media="screen" />
 	<!-- jQuery -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<!-- FlexSlider -->
@@ -53,6 +67,7 @@
 			$('#slider').flexslider({
 				animation: "slide",
 				animationLoop: false,
+				controlNav: false,
 				slideshow: false,
 				mousewheel:	true,
 				sync: "#carousel",
@@ -61,8 +76,7 @@
 				}
 			});
 		});
-
 	</script>
-	<!-- Optional FlexSlider Additions -->
+	<script defer src=@routes.Assets.at("js/videoPlayer.js")></script>
 </body>
 }
