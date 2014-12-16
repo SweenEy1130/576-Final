@@ -37,14 +37,16 @@ public class FaceDetect {
 
 	public static void main(String[] args){
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		 String path = "D:\\Workplace\\csci576-final\\www\\public\\img\\";
+		String path = "D:\\Workplace\\csci576-final\\www\\public\\img\\";
 
-		 OpenCVDetect(path);
-		 FaceppDetect(path);
-		 for (int i = 0; i < IMGNUM; i++)
-		 	if (faceArray[i])
+		OpenCVDetect(path);
+		System.out.println("Finish OpenCV Face!");
+		FaceppDetect(path);
+		System.out.println("Finish Face++ Face!");
+		for (int i = 0; i < IMGNUM; i++)
+			if (faceArray[i])
 		 		faceFile.add(i+1+".jpg");
-		 WriteToDisk();
+		WriteToDisk();
 	}
 
 	public static boolean WriteToDisk(){
